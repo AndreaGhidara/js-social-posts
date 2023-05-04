@@ -76,8 +76,14 @@ for (let i = 0; i < posts.length; i++) {
 
     const profilePic = document.createElement("img");
     profilePic.classList.add("profile-pic");
-    profilePic.src = posts[i].author.image;
-    profilePic.alt = "Phil Mangione";
+    if (posts[i].author.image == null) {
+        profilePic.classList.add("profile-pic-default")
+    }else {
+        profilePic.src = posts[i].author.image;
+    }
+    
+
+    profilePic.alt = posts[i].author.name;
 
     const postMetaData = document.createElement("div");
     postMetaData.classList.add("post-meta__data");
@@ -99,6 +105,7 @@ for (let i = 0; i < posts.length; i++) {
 
     const imagePost = document.createElement("img");
     imagePost.src = posts[i].media;
+
 
     const postFooter = document.createElement("div");
     postFooter.classList.add("post__footer");
@@ -126,8 +133,9 @@ for (let i = 0; i < posts.length; i++) {
     likesCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${posts[i].likes}</b> persone`
     
     likeButton.addEventListener("click", function () {
+        console.log(posts[i].likes);
         likesCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter like-button--liked">${posts[i].likes + 1}</b> persone`
-        
+        console.log(likesCounter.innerHTML);
     })
     containere.append(post);
 
